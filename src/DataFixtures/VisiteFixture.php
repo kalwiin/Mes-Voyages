@@ -14,15 +14,15 @@ class VisiteFixture extends Fixture
         $faker = Factory::create('fr_FR');
         
         for($k=0 ;$k<100 ; $k++){
-            $visite = new Visite();
-            $visite->setVille($faker->city)
+            $visites = new Visite();
+            $visites->setVille($faker->city)
                    ->setPays($faker->country)
                    ->setDatecreation($faker->dateTimeBetween('-10 years','now'))
                    ->setTempmin($faker->numberBetween(-20,10))
                    ->setTempmax($faker->numberBetween(10, 40))
                    ->setNote($faker->numberBetween(0,20))
                    ->setAvis($faker->sentence(4, true));
-            $manager->persist($visite);
+            $manager->persist($visites);
         }
         $manager->flush();
     }
