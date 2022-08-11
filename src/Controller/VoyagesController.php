@@ -50,17 +50,28 @@ class VoyagesController extends AbstractController{
         ]);
     }
     /**
-     * @Route("/voyages/recherche/{champ}", name="voyages.findallequal")
-     * @param type $champ
-     * @param Request $request
-     * @return Respons
-     */
-    public function findAllEqual ($champ, Request $request): Response{
+    * @Route("/voyages/recherche/{champ}", name="voyages.findallequal")
+    * @param type $champ
+    * @param Request $request
+    * @return Response
+    */
+    public function findAllEqual($champ, Request $request): Response {
         $valeur = $request->get("recherche");
         $visites = $this->repository->findByEqualValue($champ, $valeur);
-        return $this->render("pages/voyages.html.twig", 
-                ['visites' => $visites
-                ]);
+        return $this->render("pages/voyages.html.twig", [
+            'visites' => $visites
+        ]);
+    }
+    /**
+     * @Route("/voyages/voyage/{id}", name="voyages.showone")
+     * @param type $id
+     * @return Response
+     */
+    public function showOne($id): Response {
+        $visite = $this->repository->find($id);
+        return $this->render("pages/voyage.html.twig", [
+           'visite' => $visite 
+        ]);
     }
 }
 
